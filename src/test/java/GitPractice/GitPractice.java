@@ -1,4 +1,4 @@
-package Cybertek14;
+package GitPractice;
 
 public class GitPractice {
 }
