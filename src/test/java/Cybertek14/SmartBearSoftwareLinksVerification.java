@@ -1,9 +1,7 @@
 package Cybertek14;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.util.List;
@@ -30,11 +28,33 @@ public class SmartBearSoftwareLinksVerification {
         for (WebElement link : links) {
             System.out.println(link.getText());
         }
-    }
-        public static void LoginToSmartBear (WebDriver driver){
 
-            driver.findElement(By.xpath("//input[@id='ctl00_MainContent_username']")).sendKeys("Tester");
-            driver.findElement(By.xpath("//input[@id='ctl00_MainContent_password']")).sendKeys("test");
-            driver.findElement(By.xpath("//input[@id='ctl00_MainContent_login_button']")).click();
+        verifyOrder(driver, "Paul Brown");
+    }
+
+    public static void LoginToSmartBear(WebDriver driver) {
+
+        driver.findElement(By.xpath("//input[@id='ctl00_MainContent_username']")).sendKeys("Tester");
+        driver.findElement(By.xpath("//input[@id='ctl00_MainContent_password']")).sendKeys("test");
+        driver.findElement(By.xpath("//input[@id='ctl00_MainContent_login_button']")).click();
+    }
+
+    public static void verifyOrder(WebDriver driver, String givenName) {
+        List <WebElement> allNames = driver.findElements(By.xpath("//table[@id='ctl00_MainContent_orderGrid']/tbody/tr/td[2]"));
+        for (WebElement name: allNames){
+            if (name.getText().equals(givenName)){
+                System.out.println("Given name exist in list, verification passed");
+                return;
+            }
+        }
+        System.out.println("Given name doesn't exist in list, verification failed");
+    }
+
+    public static void printNamesAndCities (WebDriver driver){
+        List <WebElement> allNames = driver.findElements(By.xpath("//table[@id='ctl00_MainContent_orderGrid']/tbody/tr/td[2]"));
+        List <WebElement> allCities = driver.findElements(By.xpath("//table[@id='ctl00_MainContent_orderGrid']/tbody/tr/td[7]"));
+        for (int i=0;i<allNames.size();i++){
+            System.out.println(allNames.get(i).getText() + " <-- name, city --> " + allCities.get(i).getText());
         }
     }
+}
