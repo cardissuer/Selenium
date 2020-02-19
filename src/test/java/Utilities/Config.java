@@ -8,9 +8,9 @@ public class Config {
 
     private static Properties properties = new Properties();
     static {
-        String path = "configuration.properties";
+        String conf = "configuration.properties";
         try{
-            FileInputStream file = new FileInputStream(path);
+            FileInputStream file = new FileInputStream(conf);
             properties.load(file);
             file.close();
         } catch (IOException e) {

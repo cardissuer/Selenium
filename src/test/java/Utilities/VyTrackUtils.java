@@ -29,6 +29,4 @@ public class VyTrackUtils {
 
         SeleniumUtils.pause(2);
     }
-
-
 }

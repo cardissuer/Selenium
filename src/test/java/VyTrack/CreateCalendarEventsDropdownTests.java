@@ -94,7 +94,3 @@ public class CreateCalendarEventsDropdownTests {
         }
     }
 }
-
-
-
-
