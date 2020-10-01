@@ -2,9 +2,11 @@ package Utilities;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.safari.SafariDriver;
 
 import java.util.concurrent.TimeUnit;
 
@@ -27,6 +29,17 @@ public class Driver {
                 case "iexplorer":
                     WebDriverManager.iedriver().setup();
                     driver = new InternetExplorerDriver();
+                    break;
+                case "firefox":
+                    WebDriverManager.firefoxdriver().setup();
+                    driver = new FirefoxDriver();
+                    break;
+                case "safari":
+                    if(System.getProperty("os.name").toLowerCase().contains("windows")){
+                        throw new WebDriverException("Windows OS does not support safari");
+                    }
+                    WebDriverManager.getInstance(SafariDriver.class).setup();
+                    driver = new SafariDriver();
                     break;
             }
 

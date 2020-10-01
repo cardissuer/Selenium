@@ -15,12 +15,12 @@ public class AmazonPage extends BasePage {
         System.out.println(actualUrl);
         Assert.assertEquals(url, actualUrl);
     }
-    //Expected size = 47
+    //Expected size = 51
     @Test
-    public void validateCategroriesSize() {
+    public void validateCategoriesSize() {
         driver.get(url);
         driver.findElement(By.id("nav-hamburger-menu")).click();
-        int expCategoriesSize = 47;
+        int expCategoriesSize = 51;
         List<WebElement> categoriesList = driver
                 .findElements(By.cssSelector("ul.hmenu-visible li"));
         Assert.assertEquals(expCategoriesSize, categoriesList.size());
